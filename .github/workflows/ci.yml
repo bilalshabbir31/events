@@ -1,0 +1,25 @@
+name: Rails tests
+on: [push]
+jobs:
+  rubocop:
+    name: RuboCop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0 # Change this to your Ruby version
+
+      - name: Install Bundler
+        run: gem install bundler
+        if: runner.os == 'Linux' # Add this condition if needed
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
