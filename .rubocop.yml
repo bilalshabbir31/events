@@ -1,0 +1,34 @@
+AllCops:
+  Exclude:
+    - "lib/**/*"
+    - "bin/**/*"
+    - vendor/**/*.rb
+# Metrics/MethodLength:
+#   Exclude:
+#     - app/jobs/channel_video_fetch_job.rb
+#     - app/jobs/video_data_fetch_job.rb
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/development.rb
+# Style/RedundantFetchBlock:
+#   Exclude:
+#     - config/puma.rb
+# Metrics/CyclomaticComplexity:
+#   Exclude:
+#     - app/jobs/channel_video_fetch_job.rb
+# Metrics/PerceivedComplexity:
+#   Exclude:
+#     - app/jobs/channel_video_fetch_job.rb
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
