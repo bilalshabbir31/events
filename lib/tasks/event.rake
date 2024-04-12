@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :event do
   desc 'schedule events'
   task schedule_events: :environment do
