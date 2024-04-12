@@ -1,0 +1,18 @@
+<div id="<%= dom_id event %>">
+  <p class="my-5">
+    <strong class="inline font-medium mb-1 ml-5">Name:</strong>
+    <%= event.name %>
+    <div>
+    <strong class="inline font-medium mb-1 ml-5">Likes:</strong>
+    <%= event.like %>
+    <%= button_to 'Like', event_path(event), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline font-medium ml-5", method: :patch, params: { like: true } %>
+    </div>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this event", event, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this event", edit_event_path(event), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= button_to "Destroy this event", event_path(event), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
