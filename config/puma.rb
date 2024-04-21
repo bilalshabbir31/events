@@ -56,7 +56,7 @@ unless ENV.fetch('RAILS_ENV', 'development') == 'development'
   #
   preload_app!
 
-  shared_dir = "/home/ubuntu/headhunt/shared"
+  shared_dir = "/home/ubuntu/event/shared"
 
   # Control program(pumactl) socket path
   activate_control_app "unix://#{shared_dir}/#{ENV.fetch("CONTROLFILE", "tmp/sockets/pumactl.sock")}", no_token: true
