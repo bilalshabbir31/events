@@ -73,3 +73,5 @@ group :test do
 end
 
 gem 'rubocop', '~> 1.63'
+
+gem 'dotenv-rails', '~> 3.1'
