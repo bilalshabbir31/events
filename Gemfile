@@ -64,6 +64,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'mina', '~> 1.2'
+  gem 'mina-puma'
 end
 
 group :test do
