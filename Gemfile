@@ -76,5 +76,5 @@ group :test do
 end
 
 gem 'rubocop', '~> 1.63'
-
+gem 'puma-daemon', require: false
 gem 'dotenv-rails', '~> 3.1'
