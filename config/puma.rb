@@ -35,3 +35,46 @@ pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
+
+prune_bundler
+
+unless ENV.fetch('RAILS_ENV', 'development') == 'development'
+  require 'puma/daemon'
+
+  # Specifies the number of `workers` to boot in clustered mode.
+  # Workers are forked web server processes. If using threads and workers together
+  # the concurrency of the application would be max `threads` * `workers`.
+  # Workers do not work on JRuby or Windows (both of which do not support
+  # processes).
+  #
+  workers ENV.fetch('WEB_CONCURRENCY', 4)
+
+  # Use the `preload_app!` method when specifying a `workers` number.
+  # This directive tells Puma to first boot the application and load code
+  # before forking the application. This takes advantage of Copy On Write
+  # process behavior so workers use less memory.
+  #
+  preload_app!
+
+  shared_dir = "/home/ubuntu/headhunt/shared"
+
+  # Control program(pumactl) socket path
+  activate_control_app "unix://#{shared_dir}/#{ENV.fetch("CONTROLFILE", "tmp/sockets/pumactl.sock")}", no_token: true
+
+  # Set up socket location
+  bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
+
+  # Logging
+  stdout_redirect "#{shared_dir}/log/puma.log", "#{shared_dir}/log/puma.error.log", true
+
+  # Fork new workers from additional workers instead of main process
+  fork_worker
+
+  on_worker_boot do
+    # Worker specific setup for Rails 4.1+
+    # See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot
+    ActiveRecord::Base.establish_connection
+  end
+
+  daemonize
+end
