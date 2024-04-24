@@ -66,7 +66,6 @@ group :development do
   # gem "spring"
 
   gem 'mina', '~> 1.2'
-  gem 'mina-puma'
 end
 
 group :test do
