@@ -74,5 +74,5 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'rubocop', '~> 1.63'
 gem 'dotenv-rails', '~> 3.1'
+gem 'rubocop', '~> 1.63'
