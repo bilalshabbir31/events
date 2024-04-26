@@ -74,5 +74,5 @@ group :test do
 end
 
 gem 'dotenv-rails', '~> 3.1'
-gem 'rubocop', '~> 1.63'
 gem 'faker'
+gem 'rubocop', '~> 1.63'
