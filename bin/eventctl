@@ -1,0 +1,23 @@
+#!/bin/bash
+
+export HOME=/home/ubuntu
+
+source $HOME/.nvm/nvm.sh
+source $HOME/.rvm/scripts/rvm
+
+nvm use v20.9.0
+rvm use 3.3.0@default
+
+if [ "$1" == "start" ]; then
+  RAILS_ENV=production bundle exec pumactl start
+elif [ "$1" == "stop" ]; then
+  RAILS_ENV=production bundle exec pumactl stop
+elif [ "$1" == "restart" ]; then
+  RAILS_ENV=production bundle exec pumactl stop
+  RAILS_ENV=production bundle exec pumactl start
+else
+  # Otherwise just reload...
+  RAILS_ENV=production bundle exec pumactl restart
+fi
+
+exit 0
